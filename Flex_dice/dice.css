@@ -1,0 +1,91 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    font-family: 'open Sans', sans-serif;
+
+    background: linear-gradient(top, #222, #333); 
+    background: -webkit-linear-gradient(top, #222, #333)   /*定义google中的颜色渐变*/
+}
+
+[class$="face"] {
+    margin: 16px;
+    padding: 4px;
+
+    background-color: #e7e7e7;
+    width: 104px;
+    height: 104px;
+
+    box-shadow:inset 0 5px white, inset 0 -5px #bbb,inset 5px 0 #d7d7d7, inset -5px 0 #d7d7d7;
+    border-radius: 10%;
+}
+
+.pip {
+    display: block;       /*将span定义为块级元素，span本身是内联元素*/
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin: 4px;
+
+    background-color:  #333;
+    box-shadow: inset 0 3px #111, inset 0 -3px #555;
+}
+
+.first-face {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.second-face {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.second-face .pip:nth-child(2) {
+    align-self: flex-end;
+}
+
+.third-face {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.third-face .pip:nth-child(2) {
+    align-self: center;
+}
+
+.third-face .pip:nth-child(3) {
+    align-self: flex-end;
+}
+
+.fourth-face, .sixth-face, .nineth-face {
+    display: flex;
+    flex-wrap: wrap;                    /*由于当column也转换成flex时，会产生溢出，所以要换行*/
+    align-content: space-between;       /*定义两轴之间的距离*/
+}
+
+.fourth-face .column, .sixth-face .column, .nineth-face .column { 
+    display: flex;                          
+    flex-basis: 100%;    /*未定义项目占据的主轴空间，无法让两pip再定义justify-content后位于轴的两端*/
+    justify-content: space-between;
+}
+
+.fifth-face {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fifth-face .column {
+    display: flex;
+    flex-direction: column;          /*主要步骤就是设置了主轴的方向*/
+    justify-content: space-between;
+}
+
+.fifth-face .column:nth-child(2) {
+    justify-content: center;
+}
