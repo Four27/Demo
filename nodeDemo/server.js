@@ -3,14 +3,29 @@ var url = require('url');
 
 function start(route, handle) {
     function onRequest(request, response) {
+        /*var postData = '';
         var pathname = url.parse(request.url).pathname;
         console.log('Request ' + pathname + ' received.');
 
-        route(handle, pathname);
+        // response.writeHead(200, { 'Content-Type': 'text/plain' });     //定义HTTP头的内容类型（Content-Type）
+        // var content = route(handle, pathname);
+        // response.write(content);                //定义HTTP相应主体中的内容
+        // response.end();            //完成响应
 
-        response.writeHead(200, { 'Content-Type': 'text/plain' });     //定义HTTP头的内容类型（Content-Type）
-        response.write('Hello, world');                //定义HTTP相应主体中的内容
-        response.end();            //完成响应
+        request.setEncoding('utf8');    //设置接收数据的编码格式为utf-8
+
+        request.addListener('data', function (postDataChunk) {
+            postData += postDataChunk;
+            console.log('Received POST data chunk' + postDataChunk + '.');
+        });
+
+        request.addListener('end', function () {
+            route(handle, pathname, response, postData);
+        });*/        //文本请求
+
+        var pathname = url.parse(request.url).pathname;
+        console.log('Request ' + pathname + ' received.');
+        route(handle, pathname, response, request);
     }
 
     http.createServer(onRequest).listen(8888);
